@@ -1252,18 +1252,18 @@ func (v *manager) CheckConnectivity(flags dbus.Flags) (connectivity uint32, err 
 
 // method state
 
-//func (v *manager) Gostate(flags dbus.Flags, ch chan *dbus.Call) *dbus.Call {
+//func (v *manager) GoState(flags dbus.Flags, ch chan *dbus.Call) *dbus.Call {
 //	return v.GetObject_().Go_(v.GetInterfaceName_()+".state", flags, ch)
 //}
 //
-//func (*manager) Storestate(call *dbus.Call) (state uint32, err error) {
+//func (*manager) StoreState(call *dbus.Call) (state uint32, err error) {
 //	err = call.Store(&state)
 //	return
 //}
 //
-//func (v *manager) state(flags dbus.Flags) (state uint32, err error) {
-//	return v.Storestate(
-//		<-v.Gostate(flags, make(chan *dbus.Call, 1)).Done)
+//func (v *manager) State(flags dbus.Flags) (state uint32, err error) {
+//	return v.StoreState(
+//		<-v.GoState(flags, make(chan *dbus.Call, 1)).Done)
 //}
 
 // method CheckpointCreate
@@ -2709,6 +2709,15 @@ func (v *device) Udi() proxy.PropString {
 	}
 }
 
+// property Path s
+
+func (v *device) Path() proxy.PropString {
+	return proxy.PropString{
+		Impl: v,
+		Name: "Path",
+	}
+}
+
 // property Interface s
 
 func (v *device) Interface() proxy.PropString {
@@ -2960,6 +2969,42 @@ func (v *device) Real() proxy.PropBool {
 	return proxy.PropBool{
 		Impl: v,
 		Name: "Real",
+	}
+}
+
+// property Ip4Connectivity u
+
+func (v *device) Ip4Connectivity() proxy.PropUint32 {
+	return proxy.PropUint32{
+		Impl: v,
+		Name: "Ip4Connectivity",
+	}
+}
+
+// property Ip6Connectivity u
+
+func (v *device) Ip6Connectivity() proxy.PropUint32 {
+	return proxy.PropUint32{
+		Impl: v,
+		Name: "Ip6Connectivity",
+	}
+}
+
+// property InterfaceFlags u
+
+func (v *device) InterfaceFlags() proxy.PropUint32 {
+	return proxy.PropUint32{
+		Impl: v,
+		Name: "InterfaceFlags",
+	}
+}
+
+// property HwAddress s
+
+func (v *device) HwAddress() proxy.PropString {
+	return proxy.PropString{
+		Impl: v,
+		Name: "HwAddress",
 	}
 }
 
